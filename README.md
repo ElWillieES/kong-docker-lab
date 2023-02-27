@@ -13,6 +13,8 @@ Algunos contenedores tienen IP fija (dentro de la red Docker), de tal modo que p
 
 De esta forma, podemos arrancar este laboratorio y trastear, probar a publicar servicios (Services + Routes), balanceo (Upstreams), plugins de autenticación (ej: API Key), etc, de forma rápida y sencilla, en tu portátil (necesario Docker y Docker Compose, claro).
 
+Aunque este Docker Compose arranca varios NGINX que podemos utilizar para simular micro-servicios en nuestras pruebas, si lo deseamos también podemos utilizar [Mockbin](https://mockbin.org/), un servicio gratuito que permite mockear endpoints HTTP, que también nos puede resultar de utilidad para hacer nuestras pruebas de laboratorio, y publicar a través de Kong lo servicios fake de Mockbin a modo de laboratorio.
+
 **Puedes apoyar mi trabajo siguiéndome, haciendo "☆ Star" en el repo, o nominarme a "GitHub Star"**. Muchas gracias :-) 
 
 [![GitHub Star](https://img.shields.io/badge/GitHub-Nominar_a_star-yellow?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://stars.github.com/nominate/)
