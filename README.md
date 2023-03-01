@@ -12,7 +12,7 @@ Este repo comparte un pequeño laboratorio en formato de Docker Compose, con el 
 * **Kong Gateway** como servidor API Manager (la versión Community)
 * **Konga** como Dashboard y herramienta gráfica de administración
 * **PostgreSQL** como base de datos para Kong y Konga, utilizando un volumen Docker
-* **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong
+* **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong, apoyándose en el uso de [variables de NGINX](http://nginx.org/en/docs/varindex.html) para ayudar a depurar en las pruebas
 
 Algunos contenedores tienen IP fija (dentro de la red Docker), de tal modo que podamos hacer pruebas de filtrado de IP.
 
