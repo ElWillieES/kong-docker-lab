@@ -1,5 +1,10 @@
 # Kong Docker Lab
 
+![Docker](https://img.shields.io/badge/Docker-2496ED?&style=flat&logo=docker&logoColor=ffffff)&nbsp;
+![Kong](https://img.shields.io/badge/Kong-1AA687?style=flat&logo=Kongregate&logoColor=FFFFFF)&nbsp;
+![Postgresql](https://img.shields.io/badge/Postgresql-FFFFFF?style=flat&logo=postgresql&logoColor=316192)&nbsp;
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white)
+
 ## Introducción
 
 Este repo comparte un pequeño laboratorio en formato de Docker Compose, con el que podemos arrancar varios componentes:
