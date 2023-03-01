@@ -25,12 +25,26 @@ En mi Blog personal ([El Willie - The Geeks invaders](https://elwillie.es)) y en
 
 # Docker - Ejecución en local con Docker Compose
 
-Los siguientes comandos ejecutados en la raíz del Proyecto, muestra cómo arrancar todos los contenedores con Docker Compose, como comprobar su estados, así como la forma de poder comprobar los logs de su ejecución.
+Lo primero, en la raíz del repo, debemos **editar el fichero .env** donde se establecen variables que podemos utilizar en los contenedores definidos en el Docker Compose, como sería la Zona Horaria. 
+
+Por ejemplo, para usar Madrid deberíamos dejar así la variable TZ en el ficher .env
+
+```shell
+TZ=Europe/Madrid
+```
+
+Los siguientes comandos ejecutados en la raíz del Proyecto, muestra cómo arrancar todos los contenedores con Docker Compose, como comprobar su estado, así como la forma de poder comprobar los logs de su ejecución.
 
 ```shell
 docker-compose up -d
 docker-compose ps
 docker-compose logs
+```
+
+Podemos abrir una sesión bash en cualquiera de los contenedores ejecutando con comando como el siguiente:
+
+```shell
+docker exec -it kong-docker-lab-service_a-1 bash
 ```
 
 En caso necesario, podemos parar (sin eliminar) y volver a arrancar todos los contenedores Docker con los siguientes comandos:

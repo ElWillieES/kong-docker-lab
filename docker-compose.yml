@@ -17,6 +17,7 @@ services:
       docker-net:
         ipv4_address: 172.1.1.10
     environment:
+      TZ: ${TZ}
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
@@ -33,10 +34,11 @@ services:
   kong-prepare:
     image: kong:2.8.3-alpine
     command: "kong migrations bootstrap"
+    restart: on-failure
     networks:
       - docker-net
-    restart: on-failure
     environment:
+      TZ: ${TZ}
       KONG_DATABASE: postgres
       KONG_PG_HOST: postgres
       KONG_PG_DATABASE: kong
@@ -54,6 +56,7 @@ services:
       docker-net:
         ipv4_address: 172.1.1.11
     environment:
+      TZ: ${TZ}
       KONG_DATABASE: postgres
       KONG_PG_HOST: postgres
       KONG_PG_DATABASE: kong
@@ -76,9 +79,11 @@ services:
   konga-prepare:
     image: pantsel/konga:0.14.9
     command: "-c prepare -a postgres -u postgresql://postgres:password@postgres:5432/konga_db"
+    restart: on-failure
     networks:
       - docker-net
-    restart: on-failure
+    environment:
+      TZ: ${TZ}
     links:
       - postgres
     depends_on:
@@ -91,6 +96,7 @@ services:
       docker-net:
         ipv4_address: 172.1.1.12
     environment:
+      TZ: ${TZ}
       DB_ADAPTER: postgres
       DB_HOST: postgres
       DB_USER: postgres
@@ -109,6 +115,8 @@ services:
     networks:
       docker-net:
         ipv4_address: 172.1.1.14
+    environment:
+      TZ: ${TZ}
     ports:
       - 9001:9001
     volumes:
@@ -120,6 +128,8 @@ services:
     networks:
       docker-net:
         ipv4_address: 172.1.1.15
+    environment:
+      TZ: ${TZ}
     ports:
       - 9002:9002
     volumes:
@@ -131,6 +141,8 @@ services:
     networks:
       docker-net:
         ipv4_address: 172.1.1.16
+    environment:
+      TZ: ${TZ}
     ports:
       - 9003:9003
     volumes:
@@ -142,6 +154,8 @@ services:
     networks:
       docker-net:
         ipv4_address: 172.1.1.17
+    environment:
+      TZ: ${TZ}
     ports:
       - 9004:9004
     volumes:
@@ -153,6 +167,8 @@ services:
     networks:
       docker-net:
         ipv4_address: 172.1.1.18
+    environment:
+      TZ: ${TZ}
     ports:
       - 9005:9005
     volumes:
