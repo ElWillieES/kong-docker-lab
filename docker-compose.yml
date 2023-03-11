@@ -184,9 +184,34 @@ services:
     restart: always
     networks:
       docker-net:
-        ipv4_address: 172.1.1.13
+        ipv4_address: 172.1.1.20
     environment:
       TZ: ${TZ}
     ports:
       - 6379:6379
-    
+
+  prometheus:
+    image: prom/prometheus:v2.42.0
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.21
+    environment:
+      TZ: ${TZ}
+    ports:
+      - 9090:9090
+    volumes:
+      - ./docker-disks/prometheus-data:/prometheus
+
+  grafana:
+    image: grafana/grafana:8.2.6-ubuntu
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.22
+    environment:
+      TZ: ${TZ}
+    ports:
+      - 3000:3000
+    volumes:
+      - ./docker-disks/grafana-data:/var/lib/grafana
