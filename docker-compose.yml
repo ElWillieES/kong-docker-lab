@@ -51,7 +51,12 @@ services:
 
   kong:
     image: kong:2.8.3-alpine
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "kong", "health"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    restart: on-failure:5
     networks:
       docker-net:
         ipv4_address: 172.1.1.11
@@ -173,3 +178,15 @@ services:
       - 9005:9005
     volumes:
       - ./service_c.nginx.conf:/etc/nginx/nginx.conf
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.13
+    environment:
+      TZ: ${TZ}
+    ports:
+      - 6379:6379
+    
