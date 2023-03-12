@@ -192,6 +192,8 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.42.0
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
     restart: always
     networks:
       docker-net:
@@ -202,13 +204,25 @@ services:
       - 9090:9090
     volumes:
       - ./docker-disks/prometheus-data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  node-exporter:
+    image: prom/node-exporter:v1.5.0
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.22
+    environment:
+      TZ: ${TZ}
+    ports:
+      - 9100:9100
 
   grafana:
     image: grafana/grafana:8.2.6-ubuntu
     restart: always
     networks:
       docker-net:
-        ipv4_address: 172.1.1.22
+        ipv4_address: 172.1.1.23
     environment:
       TZ: ${TZ}
     ports:

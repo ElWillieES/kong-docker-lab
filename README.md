@@ -12,14 +12,14 @@ Más ejemplos de Badges en [markdown-badges](https://ileriayo.github.io/markdown
 
 ## Introducción
 
-Este repo comparte un pequeño laboratorio en formato de Docker Compose, con el que podemos arrancar varios componentes:
+Este repo se ha creado para complementar los Posts sobre [Kong](https://elwillie.es/tag/kong/) del Blog [El Willie - The Geeks invaders](https://elwillie.es/), y comparte un pequeño laboratorio en formato de Docker Compose, con el que podemos arrancar los siguientes componentes::
 
-* **Kong Gateway** como servidor API Manager (la versión Community)
-* **Konga** como Dashboard y herramienta gráfica de administración
-* **PostgreSQL** como base de datos para Kong y Konga, utilizando un volumen Docker
-* **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong, apoyándose en el uso de [variables de NGINX](http://nginx.org/en/docs/varindex.html) para ayudar a depurar en las pruebas
+* **Kong Gateway** como servidor API Manager (la versión Community).
+* **Konga** como Dashboard y herramienta gráfica de administración.
+* **PostgreSQL** como base de datos para Kong y Konga, utilizando un volumen Docker.
+* **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong, apoyándose en el uso de [variables de NGINX](http://nginx.org/en/docs/varindex.html) para ayudar a depurar en las pruebas. El fichero de configuración de los NGINX se presenta como un volumen, y queda versionado en git.
 * **Redis** que podemos utilizarlo para pruebas con el Plugin de Rate Limiting, por ejemplo.
-* **Prometheus** y **Grafana** para pruebas de monitorización, ambos utilizando volúmenes Docker
+* **Prometheus**, **Prometheus Node Exporter**, y **Grafana** para pruebas de monitorización, ambos utilizando volúmenes Docker. El fichero de configuración de Prometheus se presenta como un volumen, y queda versionado en git.
 
 Algunos contenedores tienen IP fija (dentro de la red Docker), de tal modo que podamos hacer pruebas de filtrado de IP.
 
