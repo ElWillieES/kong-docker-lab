@@ -229,3 +229,80 @@ services:
       - 3000:3000
     volumes:
       - ./docker-disks/grafana-data:/var/lib/grafana
+
+  elasticsearch:
+    image: elasticsearch:7.17.9
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    restart: on-failure:5
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.24
+    environment:
+      TZ: ${TZ}
+      discovery.type: single-node
+      xpack.security.enabled: false
+      ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./docker-disks/elasticsearch-data:/usr/share/elasticsearch/data
+
+  logstash:
+    image: logstash:7.17.9
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.25
+    environment:
+      TZ: ${TZ}
+      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+      discovery.seed_hosts: logstash
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5555:5555/udp"
+      - 5044:5044
+      - 9600:9600
+    volumes:
+      - ./logstash-kong-elastic-pipeline.config:/usr/share/logstash/pipeline/logstash-kong-elastic-pipeline.config
+
+  kibana:
+    image: kibana:7.17.9
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.26
+    environment:
+      TZ: ${TZ}
+      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    volumes:
+      - ./docker-disks/kibana-data:/usr/share/kibana/data
+
+  elastichq:
+    image: elastichq/elasticsearch-hq:release-v3.5.7
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.27
+    environment:
+      TZ: ${TZ}
+      HQ_DEFAULT_URL: http://elasticsearch:9200
+    ports:
+      - 5000:5000

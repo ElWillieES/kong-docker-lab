@@ -6,7 +6,9 @@
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white)&nbsp;
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=flat&logo=redis&logoColor=white)&nbsp;
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat&logo=Prometheus&logoColor=white)&nbsp;
-![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=flat&logo=grafana&logoColor=white)
+![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=flat&logo=grafana&logoColor=white)&nbsp;
+![ElasticSearch](https://img.shields.io/badge/-ElasticSearch-005571?style=flat&logo=elasticsearch)
+![Kibana](https://img.shields.io/badge/Kibana-005571?style=flat&logo=Kibana&logoColor=white)
 
 Más ejemplos de Badges en [markdown-badges](https://ileriayo.github.io/markdown-badges/)
 
@@ -20,6 +22,8 @@ Este repo se ha creado para complementar los Posts sobre [Kong](https://elwillie
 * **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong, apoyándose en el uso de [variables de NGINX](http://nginx.org/en/docs/varindex.html) para ayudar a depurar en las pruebas. El fichero de configuración de los NGINX se presenta como un volumen, y queda versionado en git.
 * **Redis** que podemos utilizarlo para pruebas con el Plugin de Rate Limiting, por ejemplo.
 * **Prometheus**, **Prometheus Node Exporter**, y **Grafana** para pruebas de monitorización, ambos utilizando volúmenes Docker. El fichero de configuración de Prometheus se presenta como un volumen, y queda versionado en git.
+* **Elasticsearch**, **Logstach**, y **Kibana** para pruebas de envío de Logs de Kong a Elastic con el fin de mejorar la monitorización, utilizando volúmenes Docker. De este modo podemos tener un Stack ELK, o bien, ELG aprovechando Grafana. El fichero de configuración de Logstach (es decir, la pipeline) se presenta como un volumen, y queda versionado en git.
+* **ElasticHQ** como herramienta para la administración de Elasticsearch.
 
 Algunos contenedores tienen IP fija (dentro de la red Docker), de tal modo que podamos hacer pruebas de filtrado de IP.
 
