@@ -277,7 +277,7 @@ services:
       - 5044:5044
       - 9600:9600
     volumes:
-      - ./logstash-kong-elastic-pipeline.config:/usr/share/logstash/pipeline/logstash-kong-elastic-pipeline.config
+      - ./logstash-kong-elastic-pipeline-udp.config:/usr/share/logstash/pipeline/logstash-kong-elastic-pipeline-udp.config
 
   kibana:
     image: kibana:7.17.9
@@ -324,3 +324,21 @@ services:
       - "5555:5555/tcp"
     volumes:
       - ./logstash-kong-elastic-pipeline-tcp.config:/usr/share/logstash/pipeline/logstash-kong-elastic-pipeline-tcp.config
+
+  logstash-http:
+    image: logstash:7.17.9
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.29
+    environment:
+      TZ: ${TZ}
+      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+      discovery.seed_hosts: logstash
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5556:5556"
+    volumes:
+      - ./logstash-kong-elastic-pipeline-http.config:/usr/share/logstash/pipeline/logstash-kong-elastic-pipeline-http.config
