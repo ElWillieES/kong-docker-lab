@@ -306,3 +306,21 @@ services:
       HQ_DEFAULT_URL: http://elasticsearch:9200
     ports:
       - 5000:5000
+
+  logstash-tcp:
+    image: logstash:7.17.9
+    restart: always
+    networks:
+      docker-net:
+        ipv4_address: 172.1.1.28
+    environment:
+      TZ: ${TZ}
+      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+      discovery.seed_hosts: logstash
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5555:5555/tcp"
+    volumes:
+      - ./logstash-kong-elastic-pipeline-tcp.config:/usr/share/logstash/pipeline/logstash-kong-elastic-pipeline-tcp.config

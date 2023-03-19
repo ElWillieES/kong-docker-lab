@@ -22,7 +22,7 @@ Este repo se ha creado para complementar los Posts sobre [Kong](https://elwillie
 * **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong, apoyándose en el uso de [variables de NGINX](http://nginx.org/en/docs/varindex.html) para ayudar a depurar en las pruebas. El fichero de configuración de los NGINX se presenta como un volumen, y queda versionado en git.
 * **Redis** que podemos utilizarlo para pruebas con el Plugin de Rate Limiting, por ejemplo.
 * **Prometheus**, **Prometheus Node Exporter**, y **Grafana** para pruebas de monitorización, ambos utilizando volúmenes Docker. El fichero de configuración de Prometheus se presenta como un volumen, y queda versionado en git.
-* **Elasticsearch**, **Logstach**, y **Kibana** para pruebas de envío de Logs de Kong a Elastic con el fin de mejorar la monitorización, utilizando volúmenes Docker. De este modo podemos tener un Stack ELK, o bien, ELG aprovechando Grafana. El fichero de configuración de Logstach (es decir, la pipeline) se presenta como un volumen, y queda versionado en git.
+* **Elasticsearch**, **Logstach**, y **Kibana** para pruebas de envío de Logs de Kong a Elastic con el fin de mejorar la monitorización, utilizando volúmenes Docker. De este modo podemos tener un Stack ELK, o bien, ELG aprovechando Grafana. El fichero de configuración de Logstach (es decir, la pipeline) se presenta como un volumen, y queda versionado en git. Hay dos costenedores de Logstash, uno para el envío de Logs de Kong por UDP y el otro por TCP.
 * **ElasticHQ** como herramienta para la administración de Elasticsearch.
 
 Algunos contenedores tienen IP fija (dentro de la red Docker), de tal modo que podamos hacer pruebas de filtrado de IP.
@@ -30,6 +30,17 @@ Algunos contenedores tienen IP fija (dentro de la red Docker), de tal modo que p
 De esta forma, podemos arrancar este laboratorio y trastear, probar a publicar servicios (Services + Routes), balanceo (Upstreams), plugins de autenticación (ej: API Key), etc, de forma rápida y sencilla, en tu portátil (necesario Docker y Docker Compose, claro).
 
 Aunque este Docker Compose arranca varios NGINX que podemos utilizar para simular micro-servicios en nuestras pruebas, si lo deseamos también podemos utilizar [Mockbin](https://mockbin.org/), un servicio gratuito que permite mockear endpoints HTTP, que también nos puede resultar de utilidad para hacer nuestras pruebas de laboratorio, y publicar a través de Kong lo servicios fake de Mockbin a modo de laboratorio.
+
+Algunos de los Posts de Kong en los que se basa este Docker Compose son:
+
+* [Introducción a Kong Gateway y Konga Dashboard](https://elwillie.es/2023/02/25/introduccion-a-kong-gateway-y-konga-dashboard/)
+* [Consumidores, Autenticación, y Autorización de APIs en Kong – I](https://elwillie.es/2023/02/27/consumidores-autenticacion-y-autorizacion-de-apis-en-kong-i/)
+* [Consumidores, Autenticación, y Autorización de APIs en Kong – II: Autenticación HMAC](https://elwillie.es/2023/03/04/consumidores-autenticacion-y-autorizacion-de-apis-en-kong-ii-autenticacion-hmac/)
+* [Consumidores, Autenticación, y Autorización de APIs en Kong – III: Autenticación JWT](https://elwillie.es/2023/03/06/consumidores-autenticacion-y-autorizacion-de-apis-en-kong-iii-autenticacion-jwt/)
+* [Consumidores, Autenticación, y Autorización de APIs en Kong – IV: OAuth2](https://elwillie.es/2023/03/07/consumidores-autenticacion-y-autorizacion-de-apis-en-kong-iv-oauth2/)
+* [Kong Plugins: Seguridad y Control de Tráfico](https://elwillie.es/2023/03/11/kong-plugins-seguridad-y-control-de-trafico/)
+* [Transformaciones de Peticiones y Respuestas HTTP con Kong](https://elwillie.es/2023/03/12/transformaciones-de-peticiones-y-respuestas-http-con-kong/)
+* [Monitorización de Kong con Prometheus, Elasticsearch y Grafana](https://elwillie.es/2023/03/13/monitorizacion-de-kong-con-prometheus-y-grafana/)
 
 **Puedes apoyar mi trabajo siguiéndome, haciendo "☆ Star" en el repo, o nominarme a "GitHub Star"**. Muchas gracias :-) 
 
