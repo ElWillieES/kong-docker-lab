@@ -16,7 +16,7 @@ Más ejemplos de Badges en [markdown-badges](https://ileriayo.github.io/markdown
 
 Este repo se ha creado para complementar los Posts sobre [Kong](https://elwillie.es/tag/kong/) del Blog [El Willie - The Geeks invaders](https://elwillie.es/), y comparte un pequeño laboratorio en formato de Docker Compose, con el que podemos arrancar los siguientes componentes::
 
-* **Kong Gateway** como servidor API Manager (la versión Community).
+* **Kong Gateway** como servidor API Manager (la versión Community). Se incluyen dos instancias, la segunda (kong2) para pruebas de alta disponibilidad (clustering).
 * **Konga** como Dashboard y herramienta gráfica de administración.
 * **PostgreSQL** como base de datos para Kong y Konga, utilizando un volumen Docker.
 * **Varios contendores NGINX** para simular servicios que deseamos exponer al exterior a través de Kong, apoyándose en el uso de [variables de NGINX](http://nginx.org/en/docs/varindex.html) para ayudar a depurar en las pruebas. El fichero de configuración de los NGINX se presenta como un volumen, y queda versionado en git.
@@ -41,6 +41,7 @@ Algunos de los Posts de Kong en los que se basa este Docker Compose son:
 * [Kong Plugins: Seguridad y Control de Tráfico](https://elwillie.es/2023/03/11/kong-plugins-seguridad-y-control-de-trafico/)
 * [Transformaciones de Peticiones y Respuestas HTTP con Kong](https://elwillie.es/2023/03/12/transformaciones-de-peticiones-y-respuestas-http-con-kong/)
 * [Monitorización de Kong con Prometheus, Elasticsearch y Grafana](https://elwillie.es/2023/03/13/monitorizacion-de-kong-con-prometheus-y-grafana/)
+* [Protegiendo la API Admin de Kong con API Key y ACLs](https://elwillie.es/2023/03/23/protegiendo-la-api-admin-de-kong-con-api-key-y-acls/)
 
 **Puedes apoyar mi trabajo siguiéndome, haciendo "☆ Star" en el repo, o nominarme a "GitHub Star"**. Muchas gracias :-) 
 
